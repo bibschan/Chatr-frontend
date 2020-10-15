@@ -7,25 +7,35 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categoryOne: { value: false },
-      categoryTwo: { value: false },
-      categoryThree: { value: false },
-      categoryFour: { value: false },
+      categoryOne: false,
+      categoryTwo: false,
+      categoryThree: false,
+      categoryFour: false,
     };
   }
-  static retrieveChannels = (id) => {
+   static retrieveChannels = (id) => {
     //get request using the userID
     axios.get(`http://localhost:3000/user_categories/getChannels/${id}`).then(
       (response) => {
-        //console.log(response);
+        // console.log(response);
         if (response.data.message === "UserCategories found") {
           if (response.data.data.categoryOne) {
-            //this.setState((this.categoryOne.value = true));
-            console.log(this.categoryOne);
+            this.setState({categoryOne: true});
+            console.log(this.state.categoryOne);
           }
-          //   if (response.data.data.categoryTwo) this.getCategory(2);
-          //   if (response.data.data.categoryThree) this.getCategory(3);
-          //   if (response.data.data.categoryFour) this.getCategory(4);
+          //setState needs to be bound?
+          if (response.data.data.categoryTwo) {
+            this.setState({categoryTwo: true});
+            console.log(this.categoryTwo);
+          }
+          if (response.data.data.categoryThree) {
+            this.setState({categoryThree: true});
+            console.log(this.categoryThree);
+          }
+          if (response.data.data.categoryFour) {
+            this.setState({categoryFour: true});
+            console.log(this.categoryFour);
+          }
         }
       },
       (error) => {
@@ -50,7 +60,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <div class="sidenav">
+        <div className="sidenav">
           <a href="#">My Profile</a>
           <a href="#">My Channels</a>
           <ul></ul>

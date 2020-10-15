@@ -26,7 +26,7 @@ class Login extends Component {
       })
       .then(
         (response) => {
-          //console.log(response);
+          console.log(response);
           //redirects into the dashboard if login is successful
           //console.log(response.data.data.id);
           if (response.data.message === "User Returned") {
